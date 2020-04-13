@@ -9,8 +9,9 @@ def lambda_handler(event, context):
         file_obj = event["Records"][0]
         filename = str(file_obj['s3']['object']['key'])
         print("Filename : ", filename)
-        fileObj = s3.get_Object(Bucket = "aws-lambda-trigger_sp1", Key=filename)
-        file_content = fileObj["Body"].read().decode['utf-8']
+        fileObj = s3.get_object(Bucket = "aws-lambda-trigger-sp1", Key=filename)
+        print("File Obj",fileObj)
+        file_content = fileObj["Body"].read().decode('utf-8')
         print("File_content : ", file_content)
     
     return "Hello from Lambda!"
